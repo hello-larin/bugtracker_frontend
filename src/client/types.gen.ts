@@ -5,6 +5,133 @@ export type ClientOptions = {
 };
 
 /**
+ * AssignIncidentRequest
+ */
+export type AssignIncidentRequest = {
+    /**
+     * Microservice Ids
+     */
+    microservice_ids: Array<string>;
+    /**
+     * Developer Ids
+     */
+    developer_ids: Array<string>;
+};
+
+/**
+ * AssignIncidentResponse
+ */
+export type AssignIncidentResponse = {
+    /**
+     * Incident Id
+     */
+    incident_id: string;
+    /**
+     * Title
+     */
+    title: string;
+    /**
+     * Assigned Services
+     */
+    assigned_services?: Array<string>;
+    /**
+     * Assigned Developers
+     */
+    assigned_developers?: Array<string>;
+    /**
+     * Assigned By
+     */
+    assigned_by: string;
+    /**
+     * Assigned At
+     */
+    assigned_at: string;
+    /**
+     * Message
+     */
+    message?: string;
+};
+
+/**
+ * CreateIncidentRequest
+ */
+export type CreateIncidentRequest = {
+    /**
+     * Title
+     */
+    title: string;
+    /**
+     * Description
+     */
+    description?: string | null;
+    /**
+     * Reproduction Steps
+     */
+    reproduction_steps?: string | null;
+    /**
+     * Attachments
+     */
+    attachments?: Array<string> | null;
+    /**
+     * Tags
+     */
+    tags?: Array<string> | null;
+};
+
+/**
+ * CreateIncidentResponse
+ */
+export type CreateIncidentResponse = {
+    /**
+     * Incident Id
+     */
+    incident_id: string;
+    /**
+     * Title
+     */
+    title: string;
+    /**
+     * Description
+     */
+    description?: string | null;
+    /**
+     * Reproduction Steps
+     */
+    reproduction_steps?: string | null;
+    status: IncidentStatusEnum;
+    priority?: IncidentPriorityEnum | null;
+    complexity?: IncidentComplexityEnum | null;
+    /**
+     * Deadline
+     */
+    deadline?: string | null;
+    /**
+     * Creator Id
+     */
+    creator_id: string;
+    /**
+     * Creator Username
+     */
+    creator_username: string;
+    /**
+     * Created At
+     */
+    created_at: string;
+    /**
+     * Tags
+     */
+    tags?: Array<string>;
+    /**
+     * Attachments
+     */
+    attachments?: Array<string>;
+    /**
+     * Message
+     */
+    message?: string;
+};
+
+/**
  * CreateMemberRequest
  */
 export type CreateMemberRequest = {
@@ -278,6 +405,76 @@ export type HttpValidationError = {
 };
 
 /**
+ * IncidentComplexityEnum
+ */
+export type IncidentComplexityEnum = 'easy' | 'medium' | 'hard';
+
+/**
+ * IncidentListResponse
+ */
+export type IncidentListResponse = {
+    /**
+     * Items
+     */
+    items: Array<IncidentSearchResponse>;
+    /**
+     * Total
+     */
+    total: number;
+};
+
+/**
+ * IncidentPriorityEnum
+ */
+export type IncidentPriorityEnum = 'low' | 'medium' | 'high' | 'critical';
+
+/**
+ * IncidentSearchResponse
+ */
+export type IncidentSearchResponse = {
+    /**
+     * Incident Id
+     */
+    incident_id: string;
+    /**
+     * Title
+     */
+    title: string;
+    /**
+     * Description
+     */
+    description?: string | null;
+    status: IncidentStatusEnum;
+    priority?: IncidentPriorityEnum | null;
+    complexity?: IncidentComplexityEnum | null;
+    /**
+     * Deadline
+     */
+    deadline?: string | null;
+    /**
+     * Assigned Services
+     */
+    assigned_services?: Array<string>;
+    /**
+     * Assigned Developers
+     */
+    assigned_developers?: Array<string>;
+    /**
+     * Tags
+     */
+    tags?: Array<string>;
+    /**
+     * Created At
+     */
+    created_at: string;
+};
+
+/**
+ * IncidentStatusEnum
+ */
+export type IncidentStatusEnum = 'new' | 'in_progress' | 'resolved' | 'closed' | 'reopened';
+
+/**
  * LoginRequest
  */
 export type LoginRequest = {
@@ -417,6 +614,85 @@ export type RegisterResponse = {
 export type RoleEnum = 'lead' | 'developer' | 'user' | 'moderator';
 
 /**
+ * UpdateIncidentRequest
+ */
+export type UpdateIncidentRequest = {
+    /**
+     * Title
+     */
+    title?: string | null;
+    /**
+     * Description
+     */
+    description?: string | null;
+    /**
+     * Reproduction Steps
+     */
+    reproduction_steps?: string | null;
+    /**
+     * Attachments
+     */
+    attachments?: Array<string> | null;
+    /**
+     * Tags
+     */
+    tags?: Array<string> | null;
+};
+
+/**
+ * UpdateIncidentResponse
+ */
+export type UpdateIncidentResponse = {
+    /**
+     * Incident Id
+     */
+    incident_id: string;
+    /**
+     * Title
+     */
+    title: string;
+    /**
+     * Description
+     */
+    description?: string | null;
+    /**
+     * Reproduction Steps
+     */
+    reproduction_steps?: string | null;
+    status: IncidentStatusEnum;
+    priority?: IncidentPriorityEnum | null;
+    complexity?: IncidentComplexityEnum | null;
+    /**
+     * Deadline
+     */
+    deadline?: string | null;
+    /**
+     * Creator Id
+     */
+    creator_id: string;
+    /**
+     * Creator Username
+     */
+    creator_username: string;
+    /**
+     * Tags
+     */
+    tags?: Array<string>;
+    /**
+     * Attachments
+     */
+    attachments?: Array<string>;
+    /**
+     * Updated At
+     */
+    updated_at: string;
+    /**
+     * Message
+     */
+    message?: string;
+};
+
+/**
  * UpdateMemberRequest
  */
 export type UpdateMemberRequest = {
@@ -501,6 +777,42 @@ export type UpdateMicroserviceResponse = {
      * Updated At
      */
     updated_at: string;
+    /**
+     * Message
+     */
+    message?: string;
+};
+
+/**
+ * UpdatePriorityComplexityRequest
+ */
+export type UpdatePriorityComplexityRequest = {
+    priority?: IncidentPriorityEnum | null;
+    complexity?: IncidentComplexityEnum | null;
+};
+
+/**
+ * UpdatePriorityComplexityResponse
+ */
+export type UpdatePriorityComplexityResponse = {
+    /**
+     * Incident Id
+     */
+    incident_id: string;
+    /**
+     * Title
+     */
+    title: string;
+    priority?: IncidentPriorityEnum | null;
+    complexity?: IncidentComplexityEnum | null;
+    /**
+     * Updated At
+     */
+    updated_at: string;
+    /**
+     * Changed By
+     */
+    changed_by: string;
     /**
      * Message
      */
@@ -901,3 +1213,134 @@ export type ReassignMemberApiMembersMemberIdPatchResponses = {
 };
 
 export type ReassignMemberApiMembersMemberIdPatchResponse = ReassignMemberApiMembersMemberIdPatchResponses[keyof ReassignMemberApiMembersMemberIdPatchResponses];
+
+export type CreateIncidentApiIncidentsPostData = {
+    body: CreateIncidentRequest;
+    path?: never;
+    query?: never;
+    url: '/api/incidents';
+};
+
+export type CreateIncidentApiIncidentsPostErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type CreateIncidentApiIncidentsPostError = CreateIncidentApiIncidentsPostErrors[keyof CreateIncidentApiIncidentsPostErrors];
+
+export type CreateIncidentApiIncidentsPostResponses = {
+    /**
+     * Successful Response
+     */
+    200: CreateIncidentResponse;
+};
+
+export type CreateIncidentApiIncidentsPostResponse = CreateIncidentApiIncidentsPostResponses[keyof CreateIncidentApiIncidentsPostResponses];
+
+export type UpdateIncidentApiIncidentsIncidentIdPatchData = {
+    body: UpdateIncidentRequest;
+    path: {
+        /**
+         * Incident Id
+         */
+        incident_id: string;
+    };
+    query?: never;
+    url: '/api/incidents/{incident_id}';
+};
+
+export type UpdateIncidentApiIncidentsIncidentIdPatchErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type UpdateIncidentApiIncidentsIncidentIdPatchError = UpdateIncidentApiIncidentsIncidentIdPatchErrors[keyof UpdateIncidentApiIncidentsIncidentIdPatchErrors];
+
+export type UpdateIncidentApiIncidentsIncidentIdPatchResponses = {
+    /**
+     * Successful Response
+     */
+    200: UpdateIncidentResponse;
+};
+
+export type UpdateIncidentApiIncidentsIncidentIdPatchResponse = UpdateIncidentApiIncidentsIncidentIdPatchResponses[keyof UpdateIncidentApiIncidentsIncidentIdPatchResponses];
+
+export type GetNewIncidentsForModerationApiModeratorIncidentsGetData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/moderator/incidents';
+};
+
+export type GetNewIncidentsForModerationApiModeratorIncidentsGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: IncidentListResponse;
+};
+
+export type GetNewIncidentsForModerationApiModeratorIncidentsGetResponse = GetNewIncidentsForModerationApiModeratorIncidentsGetResponses[keyof GetNewIncidentsForModerationApiModeratorIncidentsGetResponses];
+
+export type AssignIncidentApiIncidentsIncidentIdAssignPostData = {
+    body: AssignIncidentRequest;
+    path: {
+        /**
+         * Incident Id
+         */
+        incident_id: string;
+    };
+    query?: never;
+    url: '/api/incidents/{incident_id}/assign';
+};
+
+export type AssignIncidentApiIncidentsIncidentIdAssignPostErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type AssignIncidentApiIncidentsIncidentIdAssignPostError = AssignIncidentApiIncidentsIncidentIdAssignPostErrors[keyof AssignIncidentApiIncidentsIncidentIdAssignPostErrors];
+
+export type AssignIncidentApiIncidentsIncidentIdAssignPostResponses = {
+    /**
+     * Successful Response
+     */
+    200: AssignIncidentResponse;
+};
+
+export type AssignIncidentApiIncidentsIncidentIdAssignPostResponse = AssignIncidentApiIncidentsIncidentIdAssignPostResponses[keyof AssignIncidentApiIncidentsIncidentIdAssignPostResponses];
+
+export type UpdatePriorityComplexityApiIncidentsIncidentIdPriorityPatchData = {
+    body: UpdatePriorityComplexityRequest;
+    path: {
+        /**
+         * Incident Id
+         */
+        incident_id: string;
+    };
+    query?: never;
+    url: '/api/incidents/{incident_id}/priority';
+};
+
+export type UpdatePriorityComplexityApiIncidentsIncidentIdPriorityPatchErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type UpdatePriorityComplexityApiIncidentsIncidentIdPriorityPatchError = UpdatePriorityComplexityApiIncidentsIncidentIdPriorityPatchErrors[keyof UpdatePriorityComplexityApiIncidentsIncidentIdPriorityPatchErrors];
+
+export type UpdatePriorityComplexityApiIncidentsIncidentIdPriorityPatchResponses = {
+    /**
+     * Successful Response
+     */
+    200: UpdatePriorityComplexityResponse;
+};
+
+export type UpdatePriorityComplexityApiIncidentsIncidentIdPriorityPatchResponse = UpdatePriorityComplexityApiIncidentsIncidentIdPriorityPatchResponses[keyof UpdatePriorityComplexityApiIncidentsIncidentIdPriorityPatchResponses];

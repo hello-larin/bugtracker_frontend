@@ -2,7 +2,7 @@
 
 import type { Client, Options as Options2, TDataShape } from './client';
 import { client } from './client.gen';
-import type { AddToFavoritesApiMicroservicesMicroserviceIdFavoritePostData, AddToFavoritesApiMicroservicesMicroserviceIdFavoritePostErrors, AddToFavoritesApiMicroservicesMicroserviceIdFavoritePostResponses, CreateMemberApiMembersPostData, CreateMemberApiMembersPostErrors, CreateMemberApiMembersPostResponses, CreateMicroserviceApiMicroservicesPostData, CreateMicroserviceApiMicroservicesPostErrors, CreateMicroserviceApiMicroservicesPostResponses, CreateUserApiAdminUsersPostData, CreateUserApiAdminUsersPostErrors, CreateUserApiAdminUsersPostResponses, DeleteMicroserviceApiMicroservicesMicroserviceIdDeleteData, DeleteMicroserviceApiMicroservicesMicroserviceIdDeleteErrors, DeleteMicroserviceApiMicroservicesMicroserviceIdDeleteResponses, DeleteUserApiAdminUsersUserIdDeleteData, DeleteUserApiAdminUsersUserIdDeleteErrors, DeleteUserApiAdminUsersUserIdDeleteResponses, LoginApiAuthLoginPostData, LoginApiAuthLoginPostErrors, LoginApiAuthLoginPostResponses, ReassignMemberApiMembersMemberIdPatchData, ReassignMemberApiMembersMemberIdPatchErrors, ReassignMemberApiMembersMemberIdPatchResponses, RegisterApiAuthRegisterPostData, RegisterApiAuthRegisterPostErrors, RegisterApiAuthRegisterPostResponses, RemoveFromFavoritesApiMicroservicesMicroserviceIdFavoriteDeleteData, RemoveFromFavoritesApiMicroservicesMicroserviceIdFavoriteDeleteErrors, RemoveFromFavoritesApiMicroservicesMicroserviceIdFavoriteDeleteResponses, RemoveMemberApiMembersMemberIdDeleteData, RemoveMemberApiMembersMemberIdDeleteErrors, RemoveMemberApiMembersMemberIdDeleteResponses, SearchMicroservicesApiMicroservicesGetData, SearchMicroservicesApiMicroservicesGetErrors, SearchMicroservicesApiMicroservicesGetResponses, UpdateMicroserviceApiMicroservicesMicroserviceIdPatchData, UpdateMicroserviceApiMicroservicesMicroserviceIdPatchErrors, UpdateMicroserviceApiMicroservicesMicroserviceIdPatchResponses } from './types.gen';
+import type { AddToFavoritesApiMicroservicesMicroserviceIdFavoritePostData, AddToFavoritesApiMicroservicesMicroserviceIdFavoritePostErrors, AddToFavoritesApiMicroservicesMicroserviceIdFavoritePostResponses, AssignIncidentApiIncidentsIncidentIdAssignPostData, AssignIncidentApiIncidentsIncidentIdAssignPostErrors, AssignIncidentApiIncidentsIncidentIdAssignPostResponses, CreateIncidentApiIncidentsPostData, CreateIncidentApiIncidentsPostErrors, CreateIncidentApiIncidentsPostResponses, CreateMemberApiMembersPostData, CreateMemberApiMembersPostErrors, CreateMemberApiMembersPostResponses, CreateMicroserviceApiMicroservicesPostData, CreateMicroserviceApiMicroservicesPostErrors, CreateMicroserviceApiMicroservicesPostResponses, CreateUserApiAdminUsersPostData, CreateUserApiAdminUsersPostErrors, CreateUserApiAdminUsersPostResponses, DeleteMicroserviceApiMicroservicesMicroserviceIdDeleteData, DeleteMicroserviceApiMicroservicesMicroserviceIdDeleteErrors, DeleteMicroserviceApiMicroservicesMicroserviceIdDeleteResponses, DeleteUserApiAdminUsersUserIdDeleteData, DeleteUserApiAdminUsersUserIdDeleteErrors, DeleteUserApiAdminUsersUserIdDeleteResponses, GetNewIncidentsForModerationApiModeratorIncidentsGetData, GetNewIncidentsForModerationApiModeratorIncidentsGetResponses, LoginApiAuthLoginPostData, LoginApiAuthLoginPostErrors, LoginApiAuthLoginPostResponses, ReassignMemberApiMembersMemberIdPatchData, ReassignMemberApiMembersMemberIdPatchErrors, ReassignMemberApiMembersMemberIdPatchResponses, RegisterApiAuthRegisterPostData, RegisterApiAuthRegisterPostErrors, RegisterApiAuthRegisterPostResponses, RemoveFromFavoritesApiMicroservicesMicroserviceIdFavoriteDeleteData, RemoveFromFavoritesApiMicroservicesMicroserviceIdFavoriteDeleteErrors, RemoveFromFavoritesApiMicroservicesMicroserviceIdFavoriteDeleteResponses, RemoveMemberApiMembersMemberIdDeleteData, RemoveMemberApiMembersMemberIdDeleteErrors, RemoveMemberApiMembersMemberIdDeleteResponses, SearchMicroservicesApiMicroservicesGetData, SearchMicroservicesApiMicroservicesGetErrors, SearchMicroservicesApiMicroservicesGetResponses, UpdateIncidentApiIncidentsIncidentIdPatchData, UpdateIncidentApiIncidentsIncidentIdPatchErrors, UpdateIncidentApiIncidentsIncidentIdPatchResponses, UpdateMicroserviceApiMicroservicesMicroserviceIdPatchData, UpdateMicroserviceApiMicroservicesMicroserviceIdPatchErrors, UpdateMicroserviceApiMicroservicesMicroserviceIdPatchResponses, UpdatePriorityComplexityApiIncidentsIncidentIdPriorityPatchData, UpdatePriorityComplexityApiIncidentsIncidentIdPriorityPatchErrors, UpdatePriorityComplexityApiIncidentsIncidentIdPriorityPatchResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean, TResponse = unknown> = Options2<TData, ThrowOnError, TResponse> & {
     /**
@@ -45,12 +45,17 @@ export const loginApiAuthLoginPost = <ThrowOnError extends boolean = false>(opti
 /**
  * Search Microservices
  */
-export const searchMicroservicesApiMicroservicesGet = <ThrowOnError extends boolean = false>(options?: Options<SearchMicroservicesApiMicroservicesGetData, ThrowOnError>) => (options?.client ?? client).get<SearchMicroservicesApiMicroservicesGetResponses, SearchMicroservicesApiMicroservicesGetErrors, ThrowOnError>({ url: '/api/microservices', ...options });
+export const searchMicroservicesApiMicroservicesGet = <ThrowOnError extends boolean = false>(options?: Options<SearchMicroservicesApiMicroservicesGetData, ThrowOnError>) => (options?.client ?? client).get<SearchMicroservicesApiMicroservicesGetResponses, SearchMicroservicesApiMicroservicesGetErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/microservices',
+    ...options
+});
 
 /**
  * Create Microservice
  */
 export const createMicroserviceApiMicroservicesPost = <ThrowOnError extends boolean = false>(options: Options<CreateMicroserviceApiMicroservicesPostData, ThrowOnError>) => (options.client ?? client).post<CreateMicroserviceApiMicroservicesPostResponses, CreateMicroserviceApiMicroservicesPostErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
     url: '/api/microservices',
     ...options,
     headers: {
@@ -62,12 +67,17 @@ export const createMicroserviceApiMicroservicesPost = <ThrowOnError extends bool
 /**
  * Delete Microservice
  */
-export const deleteMicroserviceApiMicroservicesMicroserviceIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteMicroserviceApiMicroservicesMicroserviceIdDeleteData, ThrowOnError>) => (options.client ?? client).delete<DeleteMicroserviceApiMicroservicesMicroserviceIdDeleteResponses, DeleteMicroserviceApiMicroservicesMicroserviceIdDeleteErrors, ThrowOnError>({ url: '/api/microservices/{microservice_id}', ...options });
+export const deleteMicroserviceApiMicroservicesMicroserviceIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteMicroserviceApiMicroservicesMicroserviceIdDeleteData, ThrowOnError>) => (options.client ?? client).delete<DeleteMicroserviceApiMicroservicesMicroserviceIdDeleteResponses, DeleteMicroserviceApiMicroservicesMicroserviceIdDeleteErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/microservices/{microservice_id}',
+    ...options
+});
 
 /**
  * Update Microservice
  */
 export const updateMicroserviceApiMicroservicesMicroserviceIdPatch = <ThrowOnError extends boolean = false>(options: Options<UpdateMicroserviceApiMicroservicesMicroserviceIdPatchData, ThrowOnError>) => (options.client ?? client).patch<UpdateMicroserviceApiMicroservicesMicroserviceIdPatchResponses, UpdateMicroserviceApiMicroservicesMicroserviceIdPatchErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
     url: '/api/microservices/{microservice_id}',
     ...options,
     headers: {
@@ -78,20 +88,27 @@ export const updateMicroserviceApiMicroservicesMicroserviceIdPatch = <ThrowOnErr
 
 /**
  * Remove From Favorites
- *
- * Удаление микросервиса из избранного
  */
-export const removeFromFavoritesApiMicroservicesMicroserviceIdFavoriteDelete = <ThrowOnError extends boolean = false>(options: Options<RemoveFromFavoritesApiMicroservicesMicroserviceIdFavoriteDeleteData, ThrowOnError>) => (options.client ?? client).delete<RemoveFromFavoritesApiMicroservicesMicroserviceIdFavoriteDeleteResponses, RemoveFromFavoritesApiMicroservicesMicroserviceIdFavoriteDeleteErrors, ThrowOnError>({ url: '/api/microservices/{microservice_id}/favorite', ...options });
+export const removeFromFavoritesApiMicroservicesMicroserviceIdFavoriteDelete = <ThrowOnError extends boolean = false>(options: Options<RemoveFromFavoritesApiMicroservicesMicroserviceIdFavoriteDeleteData, ThrowOnError>) => (options.client ?? client).delete<RemoveFromFavoritesApiMicroservicesMicroserviceIdFavoriteDeleteResponses, RemoveFromFavoritesApiMicroservicesMicroserviceIdFavoriteDeleteErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/microservices/{microservice_id}/favorite',
+    ...options
+});
 
 /**
  * Add To Favorites
  */
-export const addToFavoritesApiMicroservicesMicroserviceIdFavoritePost = <ThrowOnError extends boolean = false>(options: Options<AddToFavoritesApiMicroservicesMicroserviceIdFavoritePostData, ThrowOnError>) => (options.client ?? client).post<AddToFavoritesApiMicroservicesMicroserviceIdFavoritePostResponses, AddToFavoritesApiMicroservicesMicroserviceIdFavoritePostErrors, ThrowOnError>({ url: '/api/microservices/{microservice_id}/favorite', ...options });
+export const addToFavoritesApiMicroservicesMicroserviceIdFavoritePost = <ThrowOnError extends boolean = false>(options: Options<AddToFavoritesApiMicroservicesMicroserviceIdFavoritePostData, ThrowOnError>) => (options.client ?? client).post<AddToFavoritesApiMicroservicesMicroserviceIdFavoritePostResponses, AddToFavoritesApiMicroservicesMicroserviceIdFavoritePostErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/microservices/{microservice_id}/favorite',
+    ...options
+});
 
 /**
  * Create User
  */
 export const createUserApiAdminUsersPost = <ThrowOnError extends boolean = false>(options: Options<CreateUserApiAdminUsersPostData, ThrowOnError>) => (options.client ?? client).post<CreateUserApiAdminUsersPostResponses, CreateUserApiAdminUsersPostErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
     url: '/api/admin/users',
     ...options,
     headers: {
@@ -103,12 +120,17 @@ export const createUserApiAdminUsersPost = <ThrowOnError extends boolean = false
 /**
  * Delete User
  */
-export const deleteUserApiAdminUsersUserIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteUserApiAdminUsersUserIdDeleteData, ThrowOnError>) => (options.client ?? client).delete<DeleteUserApiAdminUsersUserIdDeleteResponses, DeleteUserApiAdminUsersUserIdDeleteErrors, ThrowOnError>({ url: '/api/admin/users/{user_id}', ...options });
+export const deleteUserApiAdminUsersUserIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteUserApiAdminUsersUserIdDeleteData, ThrowOnError>) => (options.client ?? client).delete<DeleteUserApiAdminUsersUserIdDeleteResponses, DeleteUserApiAdminUsersUserIdDeleteErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/admin/users/{user_id}',
+    ...options
+});
 
 /**
  * Create Member
  */
 export const createMemberApiMembersPost = <ThrowOnError extends boolean = false>(options: Options<CreateMemberApiMembersPostData, ThrowOnError>) => (options.client ?? client).post<CreateMemberApiMembersPostResponses, CreateMemberApiMembersPostErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
     url: '/api/members',
     ...options,
     headers: {
@@ -120,13 +142,79 @@ export const createMemberApiMembersPost = <ThrowOnError extends boolean = false>
 /**
  * Remove Member
  */
-export const removeMemberApiMembersMemberIdDelete = <ThrowOnError extends boolean = false>(options: Options<RemoveMemberApiMembersMemberIdDeleteData, ThrowOnError>) => (options.client ?? client).delete<RemoveMemberApiMembersMemberIdDeleteResponses, RemoveMemberApiMembersMemberIdDeleteErrors, ThrowOnError>({ url: '/api/members/{member_id}', ...options });
+export const removeMemberApiMembersMemberIdDelete = <ThrowOnError extends boolean = false>(options: Options<RemoveMemberApiMembersMemberIdDeleteData, ThrowOnError>) => (options.client ?? client).delete<RemoveMemberApiMembersMemberIdDeleteResponses, RemoveMemberApiMembersMemberIdDeleteErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/members/{member_id}',
+    ...options
+});
 
 /**
  * Reassign Member
  */
 export const reassignMemberApiMembersMemberIdPatch = <ThrowOnError extends boolean = false>(options: Options<ReassignMemberApiMembersMemberIdPatchData, ThrowOnError>) => (options.client ?? client).patch<ReassignMemberApiMembersMemberIdPatchResponses, ReassignMemberApiMembersMemberIdPatchErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
     url: '/api/members/{member_id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Create Incident
+ */
+export const createIncidentApiIncidentsPost = <ThrowOnError extends boolean = false>(options: Options<CreateIncidentApiIncidentsPostData, ThrowOnError>) => (options.client ?? client).post<CreateIncidentApiIncidentsPostResponses, CreateIncidentApiIncidentsPostErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/incidents',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Update Incident
+ */
+export const updateIncidentApiIncidentsIncidentIdPatch = <ThrowOnError extends boolean = false>(options: Options<UpdateIncidentApiIncidentsIncidentIdPatchData, ThrowOnError>) => (options.client ?? client).patch<UpdateIncidentApiIncidentsIncidentIdPatchResponses, UpdateIncidentApiIncidentsIncidentIdPatchErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/incidents/{incident_id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Get New Incidents For Moderation
+ */
+export const getNewIncidentsForModerationApiModeratorIncidentsGet = <ThrowOnError extends boolean = false>(options?: Options<GetNewIncidentsForModerationApiModeratorIncidentsGetData, ThrowOnError>) => (options?.client ?? client).get<GetNewIncidentsForModerationApiModeratorIncidentsGetResponses, unknown, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/moderator/incidents',
+    ...options
+});
+
+/**
+ * Assign Incident
+ */
+export const assignIncidentApiIncidentsIncidentIdAssignPost = <ThrowOnError extends boolean = false>(options: Options<AssignIncidentApiIncidentsIncidentIdAssignPostData, ThrowOnError>) => (options.client ?? client).post<AssignIncidentApiIncidentsIncidentIdAssignPostResponses, AssignIncidentApiIncidentsIncidentIdAssignPostErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/incidents/{incident_id}/assign',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Update Priority Complexity
+ */
+export const updatePriorityComplexityApiIncidentsIncidentIdPriorityPatch = <ThrowOnError extends boolean = false>(options: Options<UpdatePriorityComplexityApiIncidentsIncidentIdPriorityPatchData, ThrowOnError>) => (options.client ?? client).patch<UpdatePriorityComplexityApiIncidentsIncidentIdPriorityPatchResponses, UpdatePriorityComplexityApiIncidentsIncidentIdPriorityPatchErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/incidents/{incident_id}/priority',
     ...options,
     headers: {
         'Content-Type': 'application/json',
